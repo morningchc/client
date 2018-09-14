@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.controller.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/welcome")
 public class Welcome {
+    @Value("${message}")
+    private String message;
 
     @GetMapping(value = "/test")
     public String test(){
@@ -27,9 +31,15 @@ public class Welcome {
     public String getTest(@RequestParam String name,@RequestParam String age){
         return name + age;
     }
+
     @PostMapping(value = "/postTest")
     public User postTest(@RequestBody User user){
         user.setAge(28);
         return user;
+    }
+    @GetMapping (value = "/getConfigTest")
+    public String getConfigTest(){
+        String msg =message;
+        return msg;
     }
 }
