@@ -39,7 +39,7 @@ public class Welcome {
     }
     @GetMapping (value = "/getConfigTest")
     public String getConfigTest(){
-        String msg =message;
+        String msg = message;
         return msg;
     }
 }
