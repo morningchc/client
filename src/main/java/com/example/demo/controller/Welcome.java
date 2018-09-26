@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.controller.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +22,7 @@ public class Welcome {
     public String Welcome(@PathVariable String message){
         String msg = "welcome";
         if (message!=null){
-            msg+=message;
+            msg += message;
         }
         return msg;
     }
@@ -40,6 +39,16 @@ public class Welcome {
     @GetMapping (value = "/getConfigTest")
     public String getConfigTest(){
         String msg = message;
+        return msg;
+    }
+    @PostMapping(value = "/testHystrix")
+    public String testHystrix(@RequestBody int num){
+        String msg = "I'm testHystrix";
+        try{
+            Thread.sleep(1000);
+        }catch(Exception e){
+           e.printStackTrace();
+        }
         return msg;
     }
 }
